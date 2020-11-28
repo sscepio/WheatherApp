@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
    private final List<Item> items = new ArrayList<>();
    private final RecyclerView.Adapter adapter = new ItemAdapter(this.items);
     private static final String IDCITY = "IDCITY";
+    private static String city;
 
 
     @Override
@@ -84,15 +85,19 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index) {
             TextView name = holder.itemView.findViewById(R.id.name);
             name.setText(String.format("%s",this.items.get(index).getCity()));
-            String city = this.items.get(index).getCity();
-
+            city = this.items.get(index).getCity();
+            Button next = holder.itemView.findViewById(R.id.Info);
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextIntent();
+                }
+            });
             name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    nextIntent();
 
-                    Intent intent= new Intent(MainActivity.this, Activity2.class);
-                    intent.putExtra(IDCITY,city);
-                    startActivity(intent);
                 }
             });
         }
@@ -105,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
             super.onAttachedToRecyclerView(recyclerView);
+        }
+        public void nextIntent (){
+            Intent intent= new Intent(MainActivity.this, Activity2.class);
+            intent.putExtra(IDCITY,city);
+            startActivity(intent);
         }
     }
 }

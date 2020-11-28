@@ -13,6 +13,13 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/Info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="@string/info" />
+
     <LinearLayout
         android:id="@+id/fragment"
         android:layout_width="wrap_content"
