@@ -90,12 +90,14 @@ public class MainActivity extends AppCompatActivity {
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    city = items.get(index).getCity();
                     nextIntent();
                 }
             });
             name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    city =  items.get(index).getCity();
                     nextIntent();
 
                 }
