@@ -72,15 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30sp"
                 android:layout_weight="1"
-                android:text="@string/home" />
+                android:text="@string/delete" />
 
-            <Button
-                android:id="@+id/wheatherInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:onClick="WhatherInfo"
-                android:text="@string/settings" />
         </LinearLayout>
     </LinearLayout>
 
