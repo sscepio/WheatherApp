@@ -1,10 +1,13 @@
 package com.example.wheatherapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +49,26 @@ public class Activity2 extends AppCompatActivity {
         System.out.println(CITY);
         init();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Home:
+                Intent intent = new Intent(Activity2.this,MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.search_history:
+                Intent intent1 = new Intent(Activity2.this,SearchHistory.class);
+                startActivity(intent1);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void init(){
         city = findViewById(R.id.textCity);
         temperature = findViewById(R.id.textTemprature);
@@ -114,7 +136,6 @@ public class Activity2 extends AppCompatActivity {
             humidity.setText(String.format("%d", weatherRequest.getMain().getHumidity()));
             windSpeed.setText(String.format("%d", weatherRequest.getWind().getSpeed()));
         }
-
 
 }
 
