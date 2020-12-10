@@ -28,4 +28,6 @@ public class Singleton {
     public static List<String> getDataSearch() {
         return dataSearch;
     }
+
+
 }

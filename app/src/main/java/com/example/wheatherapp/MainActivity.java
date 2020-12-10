@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -68,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(llm);
         ItemAdapter adapter = new ItemAdapter(items);
         recyclerView.setAdapter(adapter);
+        items.add(new Item("Москва"));
+        items.add(new Item("Санкт-Петербург"));
+        items.add(new Item("Екатеринбург"));
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
@@ -75,7 +79,30 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
 
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.Home:
+                        Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.search_history:
+                        Intent intent1 = new Intent(MainActivity.this,SearchHistory.class);
+                        startActivity(intent1);
+                        return true;
+
+                }
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+
+
+        });
 
 
 

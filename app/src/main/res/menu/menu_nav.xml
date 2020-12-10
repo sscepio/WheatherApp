@@ -8,7 +8,7 @@
             android:orderInCategory="@android:integer/config_longAnimTime"
             app:showAsAction="always" />
         <item android:title="@string/SearchHistory"
-            android:id="@+id/SearchHistory"
+            android:id="@+id/search_history"
             android:orderInCategory="@android:integer/config_longAnimTime"
             app:showAsAction="always" />
 
