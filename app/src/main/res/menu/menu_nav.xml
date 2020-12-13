@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item android:title="@string/Home"
+            android:id="@+id/Home"
+            android:orderInCategory="@android:integer/config_longAnimTime"
+            app:showAsAction="always" />
+        <item android:title="@string/SearchHistory"
+            android:id="@+id/search_history"
+            android:orderInCategory="@android:integer/config_longAnimTime"
+            app:showAsAction="always" />
+
+    </group>
+</menu>
