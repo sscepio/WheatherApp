@@ -6,7 +6,7 @@ import java.util.List;
 public class Singleton {
 
     private static Singleton INSTANCE = null;
-    public final static List<String> dataSearch = new ArrayList<>();
+    private final static List<String> dataSearch = new ArrayList<>();
 
 
 

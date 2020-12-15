@@ -31,5 +31,11 @@
     <string name="search">Search</string>
     <string name="Home">Home</string>
     <string name="SearchHistory">Search History</string>
+    <string name="sensor_data">Данные о температуре на улице</string>
+    <string name="alert_dialog_1">Alert Dialog с одной кнопкой</string>
+    <string name="exclamation">Информация о температуре</string>
+    <string name="press_button">Нажмите кнопку!</string>
+    <string name="button">Хорошо</string>
+    <string name="text_temp" />
 
 </resources>

@@ -25,7 +25,6 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.wheatherapp.Singleton.dataSearch;
 
 public class SearchHistory extends AppCompatActivity {
     private final List<Item> items = new ArrayList<>();
@@ -37,7 +36,7 @@ public class SearchHistory extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_history);
-        for (String i: dataSearch) {
+        for (String i: Singleton.getDataSearch()) {
             items.add(new Item(i));
             adapter.notifyItemInserted(items.size()-1);
 

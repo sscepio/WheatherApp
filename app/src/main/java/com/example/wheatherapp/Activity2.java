@@ -34,11 +34,11 @@ public class Activity2 extends AppCompatActivity {
     private static final String WEATHER_API_KEY = "3174fa6f190426fd2b1b0cc5ee920d4d";
     private static final String IDCITY = "IDCITY";
 
-    private EditText city;
-    private EditText temperature;
-    private EditText pressure;
-    private EditText humidity;
-    private EditText windSpeed;
+    private static EditText city;
+    private static EditText temperature;
+    private static EditText pressure;
+    private static EditText humidity;
+    private static EditText windSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,18 +75,19 @@ public class Activity2 extends AppCompatActivity {
         pressure = findViewById(R.id.textPressure);
         humidity = findViewById(R.id.textHumidity);
         windSpeed = findViewById(R.id.textWindspeed);
-        onRefresh();
+//        onRefresh();
+        startService(new Intent(Activity2.this, Services.class));
         Button refresh = findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onRefresh();
+             startService(new Intent(Activity2.this, Services.class));
             }
         });
     }
 
 
-        public void onRefresh() {
+        public static void onRefresh() {
             try {
                 final URL uri = new URL(WEATHER_URL + CITY + WEATHER_API_TEXT + WEATHER_API_KEY);
                 final Handler handler = new Handler(); // Запоминаем основной поток
@@ -125,11 +126,11 @@ public class Activity2 extends AppCompatActivity {
             }
         }
 
-        private String getLines(BufferedReader in) {
+        private static String getLines(BufferedReader in) {
             return in.lines().collect(Collectors.joining("\n"));
         }
 
-        private void displayWeather(WeatherRequest weatherRequest){
+        private static void displayWeather(WeatherRequest weatherRequest){
             city.setText(weatherRequest.getName());
             temperature.setText(String.format("%f2", weatherRequest.getMain().getTemp()));
             pressure.setText(String.format("%d", weatherRequest.getMain().getPressure()));
