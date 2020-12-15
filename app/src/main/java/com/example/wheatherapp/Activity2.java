@@ -1,10 +1,13 @@
 package com.example.wheatherapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,11 +34,11 @@ public class Activity2 extends AppCompatActivity {
     private static final String WEATHER_API_KEY = "3174fa6f190426fd2b1b0cc5ee920d4d";
     private static final String IDCITY = "IDCITY";
 
-    private EditText city;
-    private EditText temperature;
-    private EditText pressure;
-    private EditText humidity;
-    private EditText windSpeed;
+    private static EditText city;
+    private static EditText temperature;
+    private static EditText pressure;
+    private static EditText humidity;
+    private static EditText windSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +49,45 @@ public class Activity2 extends AppCompatActivity {
         System.out.println(CITY);
         init();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Home:
+                Intent intent = new Intent(Activity2.this,MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.search_history:
+                Intent intent1 = new Intent(Activity2.this,SearchHistory.class);
+                startActivity(intent1);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void init(){
         city = findViewById(R.id.textCity);
         temperature = findViewById(R.id.textTemprature);
         pressure = findViewById(R.id.textPressure);
         humidity = findViewById(R.id.textHumidity);
         windSpeed = findViewById(R.id.textWindspeed);
-        onRefresh();
+//        onRefresh();
+        startService(new Intent(Activity2.this, Services.class));
         Button refresh = findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onRefresh();
+             startService(new Intent(Activity2.this, Services.class));
             }
         });
     }
 
 
-        public void onRefresh() {
+        public static void onRefresh() {
             try {
                 final URL uri = new URL(WEATHER_URL + CITY + WEATHER_API_TEXT + WEATHER_API_KEY);
                 final Handler handler = new Handler(); // Запоминаем основной поток
@@ -103,18 +126,17 @@ public class Activity2 extends AppCompatActivity {
             }
         }
 
-        private String getLines(BufferedReader in) {
+        private static String getLines(BufferedReader in) {
             return in.lines().collect(Collectors.joining("\n"));
         }
 
-        private void displayWeather(WeatherRequest weatherRequest){
+        private static void displayWeather(WeatherRequest weatherRequest){
             city.setText(weatherRequest.getName());
             temperature.setText(String.format("%f2", weatherRequest.getMain().getTemp()));
             pressure.setText(String.format("%d", weatherRequest.getMain().getPressure()));
             humidity.setText(String.format("%d", weatherRequest.getMain().getHumidity()));
             windSpeed.setText(String.format("%d", weatherRequest.getWind().getSpeed()));
         }
-
 
 }
 
